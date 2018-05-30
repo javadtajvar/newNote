@@ -23,11 +23,8 @@
             android:id="@+id/edt_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_note"
-            android:hint="@string/title" />
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+            android:layout_below="@+id/txt_note"/>
+
         <EditText
             android:id="@+id/edt_desc"
             android:layout_width="match_parent"
