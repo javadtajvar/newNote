@@ -28,15 +28,16 @@ public class NoteApp extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
-        getNotes().addAll(readAll());
+        //getNotes().addAll(readAll(notes));
+        readAll(notes);
     }
 
     public void create(Note note) {
         String sql = String.format("INSERT INTO tbl_note(title,desc) VALUES('%S','%S')", note.getTitle(), note.getDesc());
         database.execSQL(sql);
     }
-    public List<Note> readAll(){
-        List<Note> notes = new ArrayList<>();
+    public List<Note> readAll(List<Note> notes){
+        //List<Note> notes = new ArrayList<>();
         String sql = String.format("SELECT ID,title,desc FROM tbl_note");
         Cursor cursor= database.rawQuery(sql,null);
 
@@ -56,9 +57,9 @@ public class NoteApp extends Application {
 
         database.execSQL("UPDATE tbl_note SET title='"+note.getTitle()+"' ,desc='"+note.getDesc()+"' WHERE ID="+note.getId()+";");
     }
-    public void delete(Note note){
+    public void delete(int id){
         //String sql = String.format("DELETE FROM tbl_notes WHERE ID = $s;", id+"");
-        database.execSQL("DELETE FROM tbl_note WHERE ID="+note.getId()+";");
+        database.execSQL("DELETE FROM tbl_note WHERE ID="+id+";");
     }
     @Override
     public void onTerminate() {

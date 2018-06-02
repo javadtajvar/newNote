@@ -68,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        noteApp.delete(noteApp.getNotes().get(item));
+                        int id = noteApp.getNotes().get(item).getId();
+                        //noteApp.delete(noteApp.getNotes().get(item));
                         noteApp.getNotes().remove(item);
+                        noteApp.delete(id);
                         myAdapter.notifyDataSetChanged();
                         dialogInterface.dismiss();
                     }

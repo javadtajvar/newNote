@@ -4,14 +4,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import static com.example.developer.newnote.Helper.*;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.developer.newnote.Note;
@@ -25,8 +31,9 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     Toolbar toolbar;
     Context context =this;
     Button btnBack, btnSave;
-    EditText edtTitle, edtDesc;
+    AppCompatEditText edtTitle, edtDesc;
     NoteApp noteApp;
+    TextInputLayout inputTitle;
     boolean isShow = false;
 
     @Override
@@ -34,12 +41,14 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         setInto();
+        setActionEditText();
 
         isShow = getIntent().getBooleanExtra(IS_SHOW_KEY,false);
         if (isShow){
         int id= getIntent().getIntExtra(SHOW_KEY,0);
         edtTitle.setText(noteApp.getNotes().get(id).getTitle());
         edtDesc.setText(noteApp.getNotes().get(id).getDesc());
+
         edtTitle.requestFocus();
             btnSave.setText(R.string.change_save);
         }
@@ -47,16 +56,53 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    private void setActionEditText(){
+        edtTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (edtTitle.getText().toString().isEmpty()) {
+                    inputTitle.setErrorEnabled(true);
+                    inputTitle.setError(getString(R.string.txt_error_edtTitle));
+                }else{
+                    inputTitle.setErrorEnabled(false);
+                }
+            }
+        });
+        edtTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (edtTitle.getText().toString().isEmpty()) {
+                    inputTitle.setErrorEnabled(true);
+                    inputTitle.setError(getString(R.string.txt_error_edtTitle));
+                }else{
+                    inputTitle.setErrorEnabled(false);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        inputTitle.setCounterEnabled(true);
+        inputTitle.setCounterMaxLength(40);
+
+
+    }
 
     private void setInto() {
         toolbar =findViewById(R.id.toolbar_second);
         setSupportActionBar(toolbar);
+        inputTitle =findViewById(R.id.titleInputLayout);
         isShow =false;
         noteApp = (NoteApp) getApplication();
-        btnBack = (Button) findViewById(R.id.btn_back);
-        btnSave = (Button) findViewById(R.id.btn_save);
-        edtTitle = (EditText) findViewById(R.id.edt_title);
-        edtDesc = (EditText) findViewById(R.id.edt_desc);
+        btnBack =  findViewById(R.id.btn_back);
+        btnSave =  findViewById(R.id.btn_save);
+        edtTitle =  findViewById(R.id.edt_title);
+        edtDesc =  findViewById(R.id.edt_desc);
         btnBack.setOnClickListener(this);
         btnSave.setOnClickListener(this);
     }
@@ -103,6 +149,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(context, R.string.toast_desc_empty, Toast.LENGTH_SHORT).show();
             return;
         }
+
         if (isShow == false) {
             noteApp.getNotes().add(new Note(title, desc));
             Note note = new Note(edtTitle.getText().toString(), edtDesc.getText().toString());

@@ -15,12 +15,12 @@ public class MyDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE tbl_note(ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , title VARCHAR , desc VARCHAR)");
+        sqLiteDatabase.execSQL("CREATE TABLE tbl_note(ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , title NVARCHAR , desc NVARCHAR)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("CREATE TABLE tbl_note(ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , title VARCHAR , desc VARCHAR)");
+        sqLiteDatabase.execSQL("CREATE TABLE tbl_note(ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , title NVARCHAR , desc NVARCHAR)");
 
     }
 }
