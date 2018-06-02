@@ -71,7 +71,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                          startActivity(new Intent(context,MainActivity.class));
-                        finish();
+                          finish();
                          dialogInterface.dismiss();
                     }
                 });
@@ -85,7 +85,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_save:
                 saveNote();
-                finish();
                 break;
         }
     }
