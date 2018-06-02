@@ -13,9 +13,6 @@ import com.example.developer.newnote.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Developer on 4/18/2018.
- */
 
 public class MyAdapter extends BaseAdapter {
     Context context;

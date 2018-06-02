@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Intent intent = new Intent(context, SecondActivity.class);
                 intent.putExtra(SHOW_KEY, i);
                 intent.putExtra(IS_SHOW_KEY, true);
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, SecondActivity.class);
                 startActivity(intent);
                 finish();
-
             }
         });
     }

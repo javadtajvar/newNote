@@ -3,9 +3,6 @@ package com.example.developer.newnote;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Developer on 4/18/2018.
- */
 
 public class Helper {
     public static final String TITLE_KEY="title";
