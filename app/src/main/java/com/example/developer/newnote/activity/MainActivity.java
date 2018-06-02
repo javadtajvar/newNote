@@ -26,6 +26,8 @@ import com.example.developer.newnote.R;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 import static com.example.developer.newnote.Helper.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setPositiveButton(getString(R.string.yes_sure), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-             finish();
+                finish();
                 dialogInterface.dismiss();
             }
         });
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
     private Animation anim_fade_in(){
         Animation fadeIn = new AlphaAnimation(0,1);
         fadeIn.setDuration(1000);
@@ -128,4 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 }

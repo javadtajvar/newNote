@@ -3,12 +3,13 @@ package com.example.developer.newnote;
 import android.app.Application;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import com.example.developer.newnote.database.MyDB;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class NoteApp extends Application {
@@ -22,6 +23,11 @@ public class NoteApp extends Application {
         myDB = new MyDB(this);
         database = myDB.getWritableDatabase();
         notes = new ArrayList<>();
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("font/font.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         getNotes().addAll(readAll());
     }
 

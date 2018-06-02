@@ -18,6 +18,8 @@ import com.example.developer.newnote.Note;
 import com.example.developer.newnote.NoteApp;
 import com.example.developer.newnote.R;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar toolbar;
@@ -83,7 +85,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btn_save:
                 saveNote();
-
+                finish();
                 break;
         }
     }
@@ -120,6 +122,11 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.sure_to_back);
@@ -127,6 +134,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 startActivity(new Intent(SecondActivity.this, MainActivity.class));
+                finish();
                 dialogInterface.dismiss();
             }
         });
