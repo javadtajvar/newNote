@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar_second"
+        android:background="@color/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/relativeLayout"
         android:orientation="vertical"
+        android:layout_below="@+id/toolbar_second"
         android:padding="10dp">
 
         <TextView
@@ -48,7 +57,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/btn_back"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorButton"
             android:text="@string/back"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
@@ -57,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorButton"
             android:text="@string/save"
             android:id="@+id/btn_save"
             android:textColor="@android:color/white"

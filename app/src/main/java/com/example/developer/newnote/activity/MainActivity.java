@@ -3,11 +3,17 @@ package com.example.developer.newnote.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,11 +30,12 @@ import static com.example.developer.newnote.Helper.*;
 
 public class MainActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
     Context context = this;
-    Button btnAdd;
     MyAdapter myAdapter;
     ListView listView;
     NoteApp noteApp;
+    FloatingActionButton fab_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SecondActivity.class);
@@ -105,11 +112,20 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+    private Animation anim_fade_in(){
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setDuration(1000);
+        return fadeIn;
+    }
 
     private void setInto() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         noteApp = (NoteApp) getApplication();
-        btnAdd = (Button) findViewById(R.id.btn_add);
         listView = (ListView) findViewById(R.id.list);
+        fab_add =findViewById(R.id.fab_add);
+        fab_add.setAnimation(anim_fade_in());
+
     }
 
 }

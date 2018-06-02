@@ -3,9 +3,11 @@ package com.example.developer.newnote.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import static com.example.developer.newnote.Helper.*;
@@ -18,6 +20,7 @@ import com.example.developer.newnote.R;
 
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
+    Toolbar toolbar;
     Context context =this;
     Button btnBack, btnSave;
     EditText edtTitle, edtDesc;
@@ -44,6 +47,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private void setInto() {
+        toolbar =findViewById(R.id.toolbar_second);
+        setSupportActionBar(toolbar);
         isShow =false;
         noteApp = (NoteApp) getApplication();
         btnBack = (Button) findViewById(R.id.btn_back);
@@ -59,8 +64,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
             case R.id.btn_back:
                 AlertDialog.Builder builder =new AlertDialog.Builder(context);
-                builder.setTitle("برای برگشت مطمئنی؟");
-                builder.setPositiveButton("آره", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.sure_to_back);
+                builder.setPositiveButton(R.string.txt_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                          startActivity(new Intent(context,MainActivity.class));
@@ -68,7 +73,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                          dialogInterface.dismiss();
                     }
                 });
-                builder.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.txt_negative, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                      dialogInterface.dismiss();
@@ -90,11 +95,11 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         boolean isShow = getIntent().getBooleanExtra(IS_SHOW_KEY,false);
 
         if (title.equals("")){
-            Toast.makeText(context, "عنوان را وارد کنید", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.toast_title_empty, Toast.LENGTH_SHORT).show();
             return;
         }
         if (desc.equals("")){
-            Toast.makeText(context, "یادداشت خود را وارد کنید", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.toast_desc_empty, Toast.LENGTH_SHORT).show();
             return;
         }
         if (isShow == false) {
@@ -116,7 +121,21 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(SecondActivity.this, MainActivity.class));
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.sure_to_back);
+        builder.setPositiveButton(R.string.txt_positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(SecondActivity.this, MainActivity.class));
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.txt_negative, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                 dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 }
