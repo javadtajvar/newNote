@@ -7,11 +7,13 @@ package com.example.developer.newnote;
 public class Note {
     private String title;
     private String desc;
+    private String data;
     private int id;
 
-    public Note(String title, String desc, int id) {
+    public Note(String title, String desc,String data, int id) {
         this.title = title;
         this.desc = desc;
+        this.data = data;
         this.id = id;
     }
 
@@ -43,5 +45,13 @@ public class Note {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

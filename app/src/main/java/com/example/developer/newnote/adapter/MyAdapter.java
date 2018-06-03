@@ -18,7 +18,7 @@ public class MyAdapter extends BaseAdapter {
     Context context;
     List<Note> notes = new ArrayList<>();
 
-    public MyAdapter(Context context, List<Note> notes) {
+    public MyAdapter(Context context, List<Note> notes ) {
         this.context = context;
         this.notes = notes;
     }
@@ -47,6 +47,8 @@ public class MyAdapter extends BaseAdapter {
         }
         TextView textView = view.findViewById(R.id.txt_title);
         textView.setText(notes.get(i).getTitle());
+        TextView txt_data = view.findViewById(R.id.txt_data_time);
+        txt_data.setText(notes.get(i).getData());
         return view;
     }
 }
