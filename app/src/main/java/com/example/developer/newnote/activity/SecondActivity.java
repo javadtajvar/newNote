@@ -24,6 +24,9 @@ import com.example.developer.newnote.Note;
 import com.example.developer.newnote.NoteApp;
 import com.example.developer.newnote.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
@@ -139,6 +142,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         String title = edtTitle.getText().toString();
         String desc = edtDesc.getText().toString();
         int id = getIntent().getIntExtra(SHOW_KEY,-1);
+
         boolean isShow = getIntent().getBooleanExtra(IS_SHOW_KEY,false);
 
         if (title.equals("")){
@@ -151,14 +155,20 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (isShow == false) {
-            noteApp.getNotes().add(new Note(title, desc));
-            Note note = new Note(edtTitle.getText().toString(), edtDesc.getText().toString());
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
+            String date = df.format(c.getTime());
+            noteApp.getNotes().add(new Note(title, desc,date));
+            Note note = new Note(edtTitle.getText().toString(), edtDesc.getText().toString(),date);
             noteApp.create(note);
             finish();
         }else {
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
+            String date = df.format(c.getTime());
            int i= noteApp.getNotes().get(id).getId();
-            noteApp.getNotes().set(id ,new Note(title,desc));
-            noteApp.update(new Note(title,desc, i));
+            noteApp.getNotes().set(id ,new Note(title,desc,date));
+            noteApp.update(new Note(title,desc,date, i));
             isShow =false;
             finish();
         }

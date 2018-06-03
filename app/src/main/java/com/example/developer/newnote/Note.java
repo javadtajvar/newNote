@@ -26,9 +26,10 @@ public class Note {
         this.id = id;
     }
 
-    public Note(String title, String desc) {
+    public Note(String title, String desc ,String data) {
         this.title = title;
         this.desc = desc;
+        this.data =data;
     }
 
     public String getTitle() {
