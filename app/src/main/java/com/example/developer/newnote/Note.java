@@ -7,13 +7,13 @@ package com.example.developer.newnote;
 public class Note {
     private String title;
     private String desc;
-    private String data;
+    private String date;
     private int id;
 
-    public Note(String title, String desc,String data, int id) {
+    public Note(String title, String desc,String date, int id) {
         this.title = title;
         this.desc = desc;
-        this.data = data;
+        this.date = date;
         this.id = id;
     }
 
@@ -26,10 +26,10 @@ public class Note {
         this.id = id;
     }
 
-    public Note(String title, String desc ,String data) {
+    public Note(String title, String desc ,String date) {
         this.title = title;
         this.desc = desc;
-        this.data =data;
+        this.date =date;
     }
 
     public String getTitle() {
@@ -48,11 +48,11 @@ public class Note {
         this.desc = desc;
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -47,8 +47,8 @@ public class MyAdapter extends BaseAdapter {
         }
         TextView textView = view.findViewById(R.id.txt_title);
         textView.setText(notes.get(i).getTitle());
-        TextView txt_data = view.findViewById(R.id.txt_data_time);
-        txt_data.setText(notes.get(i).getData());
+        TextView txt_date = view.findViewById(R.id.txt_date_time);
+        txt_date.setText(notes.get(i).getDate());
         return view;
     }
 }

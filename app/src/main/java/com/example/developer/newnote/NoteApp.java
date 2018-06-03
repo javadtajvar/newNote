@@ -32,11 +32,11 @@ public class NoteApp extends Application {
     }
 
     public void create(Note note) {
-        String sql = String.format("INSERT INTO tbl_note(title,desc,data) VALUES('%S','%S','$s')", note.getTitle(), note.getDesc(), note.getData());
+        String sql = String.format("INSERT INTO tbl_note(title,desc,date) VALUES('%S','%S','$s')", note.getTitle(), note.getDesc(), note.getDate());
         database.execSQL(sql);
     }
     public List<Note> readAll(List<Note> notes){
-        String sql = String.format("SELECT ID,title,desc,data FROM tbl_note");
+        String sql = String.format("SELECT ID,title,desc,date FROM tbl_note");
         Cursor cursor= database.rawQuery(sql,null);
 
         if (cursor.moveToFirst()){
@@ -44,8 +44,8 @@ public class NoteApp extends Application {
                 int id = cursor.getInt(cursor.getColumnIndex("ID"));
                 String title = cursor.getString(cursor.getColumnIndex("title"));
                 String desc = cursor.getString(cursor.getColumnIndex("desc"));
-                String data = cursor.getString(cursor.getColumnIndex("data"));
-                notes.add(new Note(title,desc,data,id));
+                String date = cursor.getString(cursor.getColumnIndex("date"));
+                notes.add(new Note(title,desc,date,id));
             }while (cursor.moveToNext());
         }
         return notes;
@@ -54,7 +54,7 @@ public class NoteApp extends Application {
 
     public void update(Note note){
 
-        database.execSQL("UPDATE tbl_note SET title='"+note.getTitle()+"' ,desc='"+note.getDesc()+"' , data='"+note.getData()+"' WHERE ID="+note.getId()+";");
+        database.execSQL("UPDATE tbl_note SET title='"+note.getTitle()+"' ,desc='"+note.getDesc()+"' , date='"+note.getDate()+"' WHERE ID="+note.getId()+";");
     }
     public void delete(int id){
         database.execSQL("DELETE FROM tbl_note WHERE ID="+id+";");

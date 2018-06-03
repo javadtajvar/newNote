@@ -166,7 +166,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
             String date = df.format(c.getTime());
-           int i= noteApp.getNotes().get(id).getId();
+            int i= noteApp.getNotes().get(id).getId();
             noteApp.getNotes().set(id ,new Note(title,desc,date));
             noteApp.update(new Note(title,desc,date, i));
             isShow =false;
