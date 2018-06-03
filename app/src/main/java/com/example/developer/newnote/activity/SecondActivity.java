@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import static com.example.developer.newnote.Helper.*;
 import android.widget.EditText;
@@ -38,6 +41,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     NoteApp noteApp;
     TextInputLayout inputTitle;
     boolean isShow = false;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +105,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         setSupportActionBar(toolbar);
         inputTitle =findViewById(R.id.titleInputLayout);
         isShow =false;
+        fab =findViewById(R.id.fab_add_alertd);
+        fab.setAnimation(anim_fade_in());
         noteApp = (NoteApp) getApplication();
         btnBack =  findViewById(R.id.btn_back);
         btnSave =  findViewById(R.id.btn_save);
@@ -109,7 +115,11 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         btnBack.setOnClickListener(this);
         btnSave.setOnClickListener(this);
     }
-
+    private Animation anim_fade_in(){
+        Animation fadeIn = new AlphaAnimation(0,1);
+        fadeIn.setDuration(1500);
+        return fadeIn;
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -143,6 +153,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         String desc = edtDesc.getText().toString();
         int id = getIntent().getIntExtra(SHOW_KEY,-1);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
+        String date = df.format(c.getTime());
+        noteApp.getNotes().add(new Note(title, desc,date));
         boolean isShow = getIntent().getBooleanExtra(IS_SHOW_KEY,false);
 
         if (title.equals("")){
@@ -155,17 +169,12 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (isShow == false) {
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
-            String date = df.format(c.getTime());
-            noteApp.getNotes().add(new Note(title, desc,date));
+
             Note note = new Note(edtTitle.getText().toString(), edtDesc.getText().toString(),date);
             noteApp.create(note);
             finish();
         }else {
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
-            String date = df.format(c.getTime());
+
             int i= noteApp.getNotes().get(id).getId();
             noteApp.getNotes().set(id ,new Note(title,desc,date));
             noteApp.update(new Note(title,desc,date, i));

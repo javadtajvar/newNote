@@ -32,7 +32,7 @@ public class NoteApp extends Application {
     }
 
     public void create(Note note) {
-        String sql = String.format("INSERT INTO tbl_note(title,desc,date) VALUES('%S','%S','$s')", note.getTitle(), note.getDesc(), note.getDate());
+        String sql = String.format("INSERT INTO tbl_note(title,desc,date) VALUES('%S','%S','%S')", note.getTitle(), note.getDesc(), note.getDate());
         database.execSQL(sql);
     }
     public List<Note> readAll(List<Note> notes){

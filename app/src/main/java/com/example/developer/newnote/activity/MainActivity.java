@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Animation anim_fade_in(){
         Animation fadeIn = new AlphaAnimation(0,1);
-        fadeIn.setDuration(1000);
+        fadeIn.setDuration(1500);
         return fadeIn;
     }
 
