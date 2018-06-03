@@ -93,20 +93,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorButton"
             android:text="@string/back"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            style="@style/button_style"/>
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorButton"
             android:text="@string/save"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            style="@style/button_style"/>
 
 
     </LinearLayout>

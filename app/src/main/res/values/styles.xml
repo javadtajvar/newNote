@@ -11,5 +11,8 @@
     </style>
 
 
+    <style name="button_style" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 
     </resources>
