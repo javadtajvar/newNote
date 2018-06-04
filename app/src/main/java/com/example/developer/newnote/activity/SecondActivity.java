@@ -156,7 +156,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd   HH:mm");
         String date = df.format(c.getTime());
-        noteApp.getNotes().add(new Note(title, desc,date));
         boolean isShow = getIntent().getBooleanExtra(IS_SHOW_KEY,false);
 
         if (title.equals("")){
@@ -169,7 +168,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (isShow == false) {
-
+            noteApp.getNotes().add(new Note(title, desc,date));
             Note note = new Note(edtTitle.getText().toString(), edtDesc.getText().toString(),date);
             noteApp.create(note);
             finish();
