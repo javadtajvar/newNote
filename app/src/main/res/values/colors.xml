@@ -6,4 +6,5 @@
     <color name="colorButton">#607D8B</color>
     <color name="colorRow">#77455A64</color>
     <color name="colorBackgroundRow">#66607D8B</color>
+    <color name="colorTxtRow">#444</color>
 </resources>
