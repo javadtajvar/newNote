@@ -32,7 +32,8 @@ public class NoteApp extends Application {
     }
 
     public void create(Note note) {
-        String sql = String.format("INSERT INTO tbl_note(title,desc,date) VALUES('%S','%S','%S')", note.getTitle(), note.getDesc(), note.getDate());
+        String sql = String.format("INSERT INTO tbl_note(title,desc,date)" +
+                " VALUES('%S','%S','%S')", note.getTitle(), note.getDesc(), note.getDate());
         database.execSQL(sql);
     }
     public List<Note> readAll(List<Note> notes){
@@ -54,7 +55,10 @@ public class NoteApp extends Application {
 
     public void update(Note note){
 
-        database.execSQL("UPDATE tbl_note SET title='"+note.getTitle()+"' ,desc='"+note.getDesc()+"' , date='"+note.getDate()+"' WHERE ID="+note.getId()+";");
+        database.execSQL("UPDATE tbl_note SET title='"+note.getTitle()+"' " +
+                ",desc='"+note.getDesc()+"' ," +
+                "date='"+note.getDate()+"'" +
+                " WHERE ID="+note.getId()+";");
     }
     public void delete(int id){
         database.execSQL("DELETE FROM tbl_note WHERE ID="+id+";");

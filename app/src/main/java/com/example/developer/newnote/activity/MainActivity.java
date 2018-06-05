@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int item, long l) {
+            public boolean onItemLongClick
+                    (AdapterView<?> adapterView, View view, final int item, long l) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setTitle(R.string.delete_note);
                 alertDialog.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {

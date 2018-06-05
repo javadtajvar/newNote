@@ -126,7 +126,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_back:
                 AlertDialog.Builder builder =new AlertDialog.Builder(context);
                 builder.setTitle(R.string.sure_to_back);
-                builder.setPositiveButton(R.string.txt_positive, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.txt_positive,
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                          startActivity(new Intent(context,MainActivity.class));
@@ -134,7 +135,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                          dialogInterface.dismiss();
                     }
                 });
-                builder.setNegativeButton(R.string.txt_negative, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.txt_negative,
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                      dialogInterface.dismiss();
