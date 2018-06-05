@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInto() {
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         noteApp = (NoteApp) getApplication();
         listView = (ListView) findViewById(R.id.list);
-        fab_add =findViewById(R.id.fab_add);
+        fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
         fab_add.setAnimation(anim_fade_in());
 
     }

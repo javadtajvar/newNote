@@ -101,17 +101,17 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void setInto() {
-        toolbar =findViewById(R.id.toolbar_second);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_second);
         setSupportActionBar(toolbar);
-        inputTitle =findViewById(R.id.titleInputLayout);
+        inputTitle = (TextInputLayout) findViewById(R.id.titleInputLayout);
         isShow =false;
-        fab =findViewById(R.id.fab_add_alertd);
+        fab = (FloatingActionButton) findViewById(R.id.fab_add_alertd);
         fab.setAnimation(anim_fade_in());
         noteApp = (NoteApp) getApplication();
-        btnBack =  findViewById(R.id.btn_back);
-        btnSave =  findViewById(R.id.btn_save);
-        edtTitle =  findViewById(R.id.edt_title);
-        edtDesc =  findViewById(R.id.edt_desc);
+        btnBack = (Button) findViewById(R.id.btn_back);
+        btnSave = (Button) findViewById(R.id.btn_save);
+        edtTitle = (AppCompatEditText) findViewById(R.id.edt_title);
+        edtDesc = (AppCompatEditText) findViewById(R.id.edt_desc);
         btnBack.setOnClickListener(this);
         btnSave.setOnClickListener(this);
     }
