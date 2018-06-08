@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import static com.example.developer.newnote.Helper.*;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
     Toolbar toolbar;
     Context context =this;
-    Button btnBack, btnSave;
+    ImageButton btnBack, btnSave;
     AppCompatEditText edtTitle, edtDesc;
     NoteApp noteApp;
     TextInputLayout inputTitle;
@@ -48,6 +49,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         setInto();
+
         setActionEditText();
 
         isShow = getIntent().getBooleanExtra(IS_SHOW_KEY,false);
@@ -57,7 +59,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         edtDesc.setText(noteApp.getNotes().get(id).getDesc());
 
         edtTitle.requestFocus();
-            btnSave.setText(R.string.change_save);
+           // btnSave.setText(R.string.change_save);
         }
 
     }
@@ -102,14 +104,15 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setInto() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_second);
+        toolbar.setTitle(R.string.new_note);
         setSupportActionBar(toolbar);
         inputTitle = (TextInputLayout) findViewById(R.id.titleInputLayout);
         isShow =false;
         fab = (FloatingActionButton) findViewById(R.id.fab_add_alertd);
         fab.setAnimation(anim_fade_in());
         noteApp = (NoteApp) getApplication();
-        btnBack = (Button) findViewById(R.id.btn_back);
-        btnSave = (Button) findViewById(R.id.btn_save);
+        btnBack = (ImageButton) findViewById(R.id.btn_back);
+        btnSave = (ImageButton) findViewById(R.id.btn_save);
         edtTitle = (AppCompatEditText) findViewById(R.id.edt_title);
         edtDesc = (AppCompatEditText) findViewById(R.id.edt_desc);
         btnBack.setOnClickListener(this);
